@@ -1,8 +1,18 @@
 // src/components/AppNavbar.jsx
 import { Navbar, Nav, Container, Badge } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 function AppNavbar() {
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate('/login');
+  };
+
   return (
     <Navbar bg="primary" variant="dark" expand="md" sticky="top">
       <Container>
